@@ -335,7 +335,7 @@ function buildImageCylinder() {
   sphereScene.innerHTML = ''; 
   const rows = 3; const cols = 20; const totalImages = rows * cols;
   const radius = Math.min(window.innerWidth, window.innerHeight) * 0.75;
-  const ySpacing = window.innerWidth < 768 ? 120 : 190; 
+  const ySpacing = window.innerWidth < 768 ? 120 : 400; 
   const startY = -((rows - 1) * ySpacing) / 2; 
   
   let imgIndex = 0;
