@@ -36,10 +36,13 @@ let t = 0;
 
 let isFormingText = false;
 let warpSpeed = false; 
-const textSequence = ["Chúc Mừng", " Ngày 1-6 Vui Vẻ!", "Các Bạn Là", "Điều Kỳ Diệu", "Trong Cuộc Sống Của Mình!"];
+const textSequence = ["HÔM NAY ... ", " LÀ NGÀY 1-6 ", "LÀ NGÀY ĐẶC BIỆT ", "VỚI CHỊ ...", "BỞI VÌ CHỊ LÀ ...", " EM BÉ", "CỦA EM :)","HY VỌNG ... ", "CHỊ SẼ THÍCH ", "MÓN QUÀ NHỎ NÀY", "BỞI VÌ NÓ LÀ","TẤM LÒNG NHỎ BÉ","CỦA EM ...", "DÀNH CHO CHỊ ĐÓ"];
 
 // Nội dung bức thư HTML (Bạn có thể tự do chỉnh sửa)
-const letterContent = `Cảm ơn các bạn đã xuất hiện trong cuộc sống của mình —<br>mỗi khoảnh khắc bên bạn đều là <em>điều kỳ diệu nhỏ</em> mà mình trân trọng từng ngày.<br><br>Dù là lúc vui hay buồn,<br>mình luôn muốn các bạn biết rằng<br><em>các bạn thật sự quan trọng</em>. 🩷`;
+const letterContent = `Cảm ơn chị đã xuất hiện trong cuộc sống của em <br>mỗi khoảnh khắc được nói chuyện, đi chơi bên chị đều là <em>niềm vui nho nhỏ trong ngày tháng tẻ nhạt</em> nên em trân trọng từng ngày.<br><br>Dù chỉ là thời gian ngắn thôi,<br>nhưng em luôn cảm thấy vui <br><em>và hi vọng len lỏi được bên cạnh chị</em>
+<br><br>Chúc chị có một ngày 1-6 thật vui vẻ, <br>đầy ắp tiếng cười và những điều ngọt ngào, hy vọng món quà nhỏ này sẽ mang đến cho chị một chút bất ngờ và niềm vui trong ngày đặc biệt này, nếu có thể thì chị đừng xua đuổi em nhé, không ai có lỗi trong câu chuyện này cả, chỉ là em muốn gửi gắm chút tình cảm chân thành của mình qua món quà này thôi, 
+sau cuối thì chị vẫn là người đặc biệt nhất trong lòng em, vẫn cứ mãi là em bé của em... có lẽ vậy ^ v ^,<br>  happy Children's Day   
+. 🩷`;
 
 function rand(a, b) { return a + Math.random() * (b - a); }
 function randInt(a, b) { return Math.floor(rand(a, b + 1)); }
@@ -92,34 +95,57 @@ function getTextPoints(text) {
   const tCtx = tCanvas.getContext('2d', { willReadFrequently: true });
   tCanvas.width = W; tCanvas.height = H;
   
-  // LOGIC RESPONSIVE MỚI
   const isMobile = W < 768;
   
-  // Nếu là mobile, ta dùng font size cố định hoặc to hơn để không bị tràn
-  // Công thức: Chiều ngang chia cho số ký tự, nhưng có giới hạn tối thiểu
-  let fontSize = isMobile ? Math.min(W / (text.length * 0.35), 60) : Math.min(W / (text.length * 0.4), 120);
+  // 1. Kích thước chuẩn
+  let fontSize = isMobile ? 45 : 90; 
   
-  // Ép font-weight 900 cho chữ siêu dày
   tCtx.fillStyle = 'white'; 
-  tCtx.font = `900 ${fontSize}px 'Dancing Script', cursive`;
+  // 2. THÊM LẠI "bold": Rất quan trọng để nét chữ Dancing Script không bị đứt đoạn
+  tCtx.font = `bold ${fontSize}px 'Dancing Script', cursive, sans-serif`;
   tCtx.textAlign = 'center'; 
   tCtx.textBaseline = 'middle'; 
-  tCtx.fillText(text, W / 2, H / 2);
+
+  const words = text.split(' ');
+  let line = '';
+  const lines = [];
+  const maxWidth = W * 0.9; 
+
+  for (let n = 0; n < words.length; n++) {
+    let testLine = line + words[n] + ' ';
+    let testWidth = tCtx.measureText(testLine).width;
+    if (testWidth > maxWidth && n > 0) {
+      lines.push(line);
+      line = words[n] + ' ';
+    } else {
+      line = testLine;
+    }
+  }
+  lines.push(line); 
+
+  let lineHeight = fontSize * 1.2;
+  let startY = (H / 2) - ((lines.length - 1) * lineHeight) / 2;
+  
+  for (let i = 0; i < lines.length; i++) {
+    tCtx.fillText(lines[i].trim(), W / 2, startY + (i * lineHeight));
+  }
 
   const imgData = tCtx.getImageData(0, 0, W, H).data; 
   const points = [];
   
-  // Tăng mật độ hạt (step nhỏ hơn = hạt dày hơn)
-  const step = isMobile ? 2 : Math.max(2, Math.floor(W / 450)); 
+  // 3. MẬT ĐỘ HẠT DÀY LÊN (step = 1): Các ngôi sao sẽ xếp sát rạt vào nhau tạo thành đường liền mạch
+  const step = isMobile ? 1 : 2; 
   
   for (let y = 0; y < H; y += step) {
     for (let x = 0; x < W; x += step) { 
-      if (imgData[(y * W + x) * 4 + 3] > 128) points.push({ x, y }); 
+      // 4. Mốc Alpha (60): Lấy vừa đủ nét, không quá mờ cũng không quá gắt
+      if (imgData[(y * W + x) * 4 + 3] > 60) { 
+        points.push({ x, y }); 
+      }
     }
   }
   return points;
 }
-
 function playTextSequence() {
   isFormingText = true; let step = 0;
   function nextText() {
@@ -442,15 +468,20 @@ function typeWriterHTML(element, fullHTML, speed, callback) {
       if (fullHTML.charAt(i) === '<') {
         let tag = '';
         while (fullHTML.charAt(i) !== '>' && i < fullHTML.length) { tag += fullHTML.charAt(i); i++; }
-        tag += '>'; currentString += tag; i++; element.innerHTML = currentString; type(); 
+        tag += '>'; currentString += tag; i++; element.innerHTML = currentString; 
+        
+        element.scrollTop = element.scrollHeight; // TỰ ĐỘNG CUỘN XUỐNG
+        type(); 
       } else {
-        currentString += fullHTML.charAt(i); element.innerHTML = currentString; i++; setTimeout(type, speed); 
+        currentString += fullHTML.charAt(i); element.innerHTML = currentString; i++; 
+        
+        element.scrollTop = element.scrollHeight; // TỰ ĐỘNG CUỘN XUỐNG
+        setTimeout(type, speed); 
       }
     } else { if (callback) callback(); }
   }
   type();
 }
-
 openCardBtn.addEventListener('click', () => {
   sphereZone.classList.remove('visible'); 
   setTimeout(() => {
