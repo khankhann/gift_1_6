@@ -1,13 +1,27 @@
 
 // const IMAGE_LINKS = ["link1", "link2", "link3"...]; // tạo folder ảnh rồi dán link từng ảnh vào đây 
-const IMAGE_LINKS = ["picture/IMG_0619.JPG", "picture/IMG_0620.JPG", "picture/IMG_0621.JPG", "picture/IMG_0622.JPG", "picture/IMG_0623.JPG", "picture/IMG_0624.JPG", "picture/IMG_0625.JPG", "picture/IMG_0626.JPG", "picture/IMG_0627.JPG", "picture/IMG_0628.JPG", "picture/IMG_0629.JPG", "picture/IMG_0630.JPG", "picture/IMG_0631.JPG", "picture/IMG_0632.JPG", "picture/IMG_0633.JPG", "picture/IMG_0634.JPG", "picture/IMG_0635.JPG", "picture/IMG_0636.JPG", "picture/IMG_0637.JPG", "picture/IMG_0638.JPG"," picture/IMG_0639.JPG", "picture/IMG_0640.JPG", "picture/IMG_0641.JPG", "picture/IMG_0642.JPG", "picture/IMG_0643.JPG", "picture/IMG_0644.JPG", "picture/IMG_0645.JPG", "picture/IMG_0646.JPG", "picture/IMG_0647.JPG", "picture/IMG_0648.JPG", "picture/IMG_0649.JPG", "picture/IMG_0650.JPG", "picture/IMG_0651.JPG", "picture/IMG_0652.JPG", "picture/IMG_0653.JPG", "picture/IMG_0654.JPG", "picture/IMG_0655.JPG", "picture/IMG_0656.JPG", "picture/IMG_0657.JPG", "picture/IMG_0658.JPG ", "picture/IMG_0659.JPG", "picture/IMG_0660.JPG", "picture/IMG_0661.JPG", "picture/IMG_0662.JPG", "picture/IMG_0663.JPG", "picture/IMG_0664.JPG", "picture/IMG_0665.JPG", "picture/IMG_0666.JPG", "picture/IMG_0667.JPG", "picture/IMG_0668.JPG", "picture/IMG_0669.JPG", "picture/IMG_0670.JPG", "picture/IMG_0671.JPG", "picture/IMG_0672.JPG", "picture/IMG_0673.JPG", "picture/IMG_0674.JPG", "picture/IMG_0675.JPG", "picture/IMG_0676.JPG", "picture/IMG_0677.JPG", "picture/IMG_0678.JPG ", "picture/IMG_0679.JPG", "picture/IMG_0680.JPG", "picture/IMG_0681.JPG", "picture/IMG_0682.JPG", "picture/IMG_0683.JPG", "picture/IMG_0684.JPG", "picture/IMG_0685.JPG", "picture/IMG_0686.JPG", "picture/IMG_0687.JPG", "picture/IMG_0688.JPG", "picture/IMG_0689.JPG", "picture/IMG_0690.JPG", "picture/IMG_0691.JPG", "picture/IMG_0692.JPG", "picture/IMG_0693.JPG", "picture/IMG_0694.JPG", "picture/IMG_0695.JPG", "picture/IMG_0696.JPG", "picture/IMG_0697.JPG"];
-// for(let i = 1; i <= 60; i++) {
-//   IMAGE_LINKS.push(`https://picsum.photos/seed/${i * 10}/800/1200`);
-// }
-
-// sau khi thêm ảnh vào xóa dòng 4-6 đi nhé, mình chỉ để test 
-
-
+const IMAGE_LINKS = [
+  "picture/IMG_0619.JPG", "picture/IMG_0620.JPG", "picture/IMG_0621.JPG", "picture/IMG_0622.JPG", 
+  "picture/IMG_0623.JPG", "picture/IMG_0624.JPG", "picture/IMG_0625.JPG", "picture/IMG_0626.JPG", 
+  "picture/IMG_0627.JPG", "picture/IMG_0628.JPG", "picture/IMG_0629.JPG", "picture/IMG_0630.JPG", 
+  "picture/IMG_0631.JPG", "picture/IMG_0632.JPG", "picture/IMG_0633.JPG", "picture/IMG_0634.JPG", 
+  "picture/IMG_0635.JPG", "picture/IMG_0636.JPG", "picture/IMG_0637.JPG", "picture/IMG_0638.JPG", 
+  "picture/IMG_0639.JPG", "picture/IMG_0640.JPG", "picture/IMG_0641.JPG", "picture/IMG_0642.JPG", 
+  "picture/IMG_0643.JPG", "picture/IMG_0644.JPG", "picture/IMG_0645.JPG", "picture/IMG_0646.JPG", 
+  "picture/IMG_0647.JPG", "picture/IMG_0648.JPG", "picture/IMG_0649.JPG", "picture/IMG_0650.JPG", 
+  "picture/IMG_0651.JPG", "picture/IMG_0652.JPG", "picture/IMG_0653.JPG", "picture/IMG_0654.JPG", 
+  "picture/IMG_0655.JPG", "picture/IMG_0656.JPG", "picture/IMG_0657.JPG", "picture/IMG_0658.JPG", 
+  "picture/IMG_0659.JPG", "picture/IMG_0660.JPG", "picture/IMG_0661.JPG", "picture/IMG_0662.JPG", 
+  "picture/IMG_0663.JPG", "picture/IMG_0664.JPG", "picture/IMG_0665.JPG", "picture/IMG_0666.JPG", 
+  "picture/IMG_0667.JPG", "picture/IMG_0668.JPG", "picture/IMG_0669.JPG", "picture/IMG_0670.JPG", 
+  "picture/IMG_0671.JPG", "picture/IMG_0672.JPG", "picture/IMG_0673.JPG", "picture/IMG_0674.JPG", 
+  "picture/IMG_0675.JPG", "picture/IMG_0676.JPG", "picture/IMG_0677.JPG", "picture/IMG_0678.JPG", 
+  "picture/IMG_0679.JPG", "picture/IMG_0680.JPG", "picture/IMG_0681.JPG", "picture/IMG_0682.JPG", 
+  "picture/IMG_0683.JPG", "picture/IMG_0684.JPG", "picture/IMG_0685.JPG", "picture/IMG_0686.JPG", 
+  "picture/IMG_0687.JPG", "picture/IMG_0688.JPG", "picture/IMG_0689.JPG", "picture/IMG_0690.JPG", 
+  "picture/IMG_0691.JPG", "picture/IMG_0692.JPG", "picture/IMG_0693.JPG", "picture/IMG_0694.JPG", 
+  "picture/IMG_0695.JPG", "picture/IMG_0696.JPG", "picture/IMG_0697.JPG"
+];
 
 const STAR_COLORS = [
   [255, 107, 157], [255, 179, 209], [255, 204, 229], [255, 255, 255], [255, 230, 240] 
