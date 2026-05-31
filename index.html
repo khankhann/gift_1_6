@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Món Quà Nhỏ</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="galaxy"></canvas>
+
+<div id="intro">
+  <p class="hold-hint">✦ một điều nhỏ dành riêng cho bạn ✦</p>
+  <div class="hold-btn-wrap">
+    <div class="hold-btn" id="holdBtn">
+      <div class="progress-ring" id="progressRing"></div>
+      <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    </div>
+    <span style="color:rgba(255,179,209,0.6);font-size:13px;letter-spacing:1px;">Giữ để bắt đầu</span>
+  </div>
+</div>
+
+<div id="continue-wrap" class="continue-wrap">
+  <button id="continueBtn" class="continue-btn">Tiếp tục ✦</button>
+</div>
+
+<div id="sphere-zone" class="sphere-zone">
+  <div id="sphere-scene" class="sphere-scene"></div>
+  <button id="openCardBtn" class="continue-btn sphere-btn">Mở thư 🌸</button>
+</div>
+
+<div id="image-modal" class="image-modal">
+  <span class="close-modal" id="closeModal">&times;</span>
+  <img class="modal-content" id="zoomedImg">
+</div>
+
+<div class="hearts-rain" id="heartsRain"></div>
+
+<div id="message-screen">
+  <div class="message-card">
+    <div class="msg-deco">🩷</div>
+    <div class="msg-title">Gửi đến bạn</div>
+    <div class="msg-body" id="msgBody"></div>
+    <div class="msg-sign" id="msgSign">— Khan ✦</div>
+    <button class="back-btn" id="backBtn">← Quay lại</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+
+<audio id= "bgMusic" loop>
+    <source src="./audio/Nơi Này Có Anh.mp3" type="audio/mpeg">
+</audio>
+</html>
