@@ -2,8 +2,8 @@
 // const IMAGE_LINKS = ["link1", "link2", "link3"...]; // tạo folder ảnh rồi dán link từng ảnh vào đây 
 const IMAGE_LINKS = [
   "picture/IMG_0619.JPG", "picture/IMG_0620.JPG", "picture/IMG_0621.JPG", "picture/IMG_0622.JPG", 
-  "picture/IMG_0623.JPG", "picture/IMG_0624.JPG", "picture/IMG_0625.JPG", "picture/IMG_0626.JPG", 
-  "picture/IMG_0627.JPG", "picture/IMG_0628.JPG", "picture/IMG_0629.JPG", "picture/IMG_0630.JPG", 
+  "picture/IMG_0623.JPG", "picture/IMG_0624.JPG", "picture/IMG_0625.JPG", 
+   "picture/IMG_0628.JPG", "picture/IMG_0629.JPG", 
   "picture/IMG_0631.JPG", "picture/IMG_0632.JPG", "picture/IMG_0633.JPG", "picture/IMG_0634.JPG", 
   "picture/IMG_0635.JPG", "picture/IMG_0636.JPG", "picture/IMG_0637.JPG", "picture/IMG_0638.JPG", 
   "picture/IMG_0639.JPG", "picture/IMG_0640.JPG", "picture/IMG_0641.JPG", "picture/IMG_0642.JPG", 
@@ -267,15 +267,13 @@ function startHold() {
   
 const bgMusic = document.getElementById('bgMusic');
   if (bgMusic) {
-    const playPromise = bgMusic.play();
-    if (playPromise !== undefined) {
-      playPromise.then(_ => {
-        // Nhạc đã bắt đầu phát thành công!
-      }).catch(error => {
-        // Nếu vẫn lỗi, trình duyệt chặn, không làm gì cả để tránh báo đỏ console
-        console.log("Trình duyệt chặn phát nhạc tự động");
-      });
-    }
+   bgMusic.play().then(() => {
+      console.log("Nhạc đã phát thành công!");
+    }).catch(error => {
+      console.log("Trình duyệt vẫn chặn, cần thêm tương tác: ", error);
+    });
+  
+    
   }
 
   holdInterval = setInterval(() => {
@@ -347,9 +345,10 @@ continueBtn.addEventListener('click', () => {
 
 function buildImageCylinder() {
   sphereScene.innerHTML = ''; 
-  const rows = 3; const cols = 20; const totalImages = rows * cols;
+  const rows = 3; const cols = 20; 
+  const totalImages = rows * cols;
   const radius = Math.min(window.innerWidth, window.innerHeight) * 0.75;
-  const ySpacing = window.innerWidth < 768 ? 120 : 400; 
+  const ySpacing = window.innerWidth < 768 ? 120 : 220; 
   const startY = -((rows - 1) * ySpacing) / 2; 
   
   let imgIndex = 0;
