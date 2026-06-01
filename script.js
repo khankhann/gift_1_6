@@ -58,8 +58,8 @@ function resizeCanvas() {
 
 function buildScene() {
   stars = []; nebulae = []; shoots = []; warpSpeed = false; 
-  const count = Math.min(6000, Math.max(6000, Math.floor(W * H / 100)));
-  
+  const isMobile = window.innerWidth < 768;
+  const count = isMobile ? 2000 : 10000;
   for (let i = 0; i < count; i++) {
     const col = STAR_COLORS[randInt(0, STAR_COLORS.length - 1)];
     const r = Math.random() < 0.05 ? rand(1.5, 2.5) : Math.random() < 0.4 ? rand(0.6, 1.2) : rand(0.2, 0.5);
@@ -96,7 +96,7 @@ function getTextPoints(text) {
   tCanvas.width = W; tCanvas.height = H;
   
   const isMobile = W < 768;
-  
+ 
   // 1. Kích thước chuẩn
   let fontSize = isMobile ? 45 : 90; 
   
@@ -371,7 +371,9 @@ continueBtn.addEventListener('click', () => {
 
 function buildImageCylinder() {
   sphereScene.innerHTML = ''; 
-  const rows = 3; const cols = 20; 
+  const isMobile = window.innerWidth < 768;
+  const rows = 3; 
+  const cols = isMobile ? 8 : 15;
   const totalImages = rows * cols;
   const radius = Math.min(window.innerWidth, window.innerHeight) * 0.75;
   const ySpacing = window.innerWidth < 768 ? 120 : 220; 
