@@ -59,7 +59,7 @@ function resizeCanvas() {
 function buildScene() {
   stars = []; nebulae = []; shoots = []; warpSpeed = false; 
   const isMobile = window.innerWidth < 768;
-  const count = isMobile ? 2000 : 10000;
+  const count = isMobile ? 3000 : 10000;
   for (let i = 0; i < count; i++) {
     const col = STAR_COLORS[randInt(0, STAR_COLORS.length - 1)];
     const r = Math.random() < 0.05 ? rand(1.5, 2.5) : Math.random() < 0.4 ? rand(0.6, 1.2) : rand(0.2, 0.5);
@@ -138,13 +138,13 @@ function getTextPoints(text) {
   
   for (let y = 0; y < H; y += step) {
     for (let x = 0; x < W; x += step) { 
-      // 4. Mốc Alpha (60): Lấy vừa đủ nét, không quá mờ cũng không quá gắt
-      if (imgData[(y * W + x) * 4 + 3] > 60) { 
+      
+      if (imgData[(y * W + x) * 4 + 3] > 80) { 
         points.push({ x, y }); 
       }
     }
   }
-  return points;
+ return points.sort(() => Math.random() - 0.5);
 }
 function playTextSequence() {
   isFormingText = true; let step = 0;
@@ -238,8 +238,10 @@ function galaxyDraw() {
       }
       s.x += s.vx; s.y += s.vy;
     } else {
-      s.vx += (Math.random() - 0.5) * 0.02; s.vy += (Math.random() - 0.5) * 0.02; s.vx *= 0.95; s.vy *= 0.95;
-      s.currentCol = s.origCol; s.renderAlpha = s.origAlpha * (0.5 + 0.5 * Math.sin(t * s.twSpd + s.twOff));
+      s.vx += (Math.random() - 0.5) * 0.1; s.vy += (Math.random() - 0.5) * 0.1; 
+      s.vx *= 0.85; s.vy *= 0.85;
+      s.currentCol = s.origCol; 
+      s.renderAlpha = s.origAlpha * 0.3 * (0.5 + 0.5 * Math.sin(t * s.twSpd + s.twOff));
       s.x += s.vx; s.y += s.vy;
     }
 
@@ -372,8 +374,8 @@ continueBtn.addEventListener('click', () => {
 function buildImageCylinder() {
   sphereScene.innerHTML = ''; 
   const isMobile = window.innerWidth < 768;
-  const rows = 3; 
-  const cols = isMobile ? 8 : 15;
+  const rows = 4; 
+  const cols = isMobile ? 10 : 15;
   const totalImages = rows * cols;
   const radius = Math.min(window.innerWidth, window.innerHeight) * 0.75;
   const ySpacing = window.innerWidth < 768 ? 120 : 220; 
